@@ -8,8 +8,7 @@
 
 </script>
 
-	<title>Home</title>ㄴㅇㄴㅁㅇㄻㄴㄹ
-	drfgtdsrgsdgddsgdgdgdg
+	<title>Home</title>
 	
 </head>
 <body>
