@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>	
+	
+	<typeAliases>
+		<typeAlias type="com.test.web.vo.TestVO" alias="TestVO" />
+		<typeAlias type="com.test.web.vo.MemberVO" alias="MemberVO" />
+		<typeAlias type="com.test.web.vo.GuestbookVO" alias="GuestbookVO" />
+		<typeAlias type="com.test.web.vo.BoardVO" alias="BoardVO" />
+		<typeAlias type="com.test.web.vo.ReplyVO" alias="ReplyVO" />
+		
+<!-- 		710선생님 -->
+<!-- 		<typeAlias type="com.test.web.vo.BoardVO" alias="BoardVO" /> -->
+		
+	</typeAliases>
+	<mappers>
+		<mapper resource="mapper/testMapper.xml" />
+		<mapper resource="mapper/MemberMapper.xml" />
+		<mapper resource="mapper/SelectMemberMapper.xml" />
+		<mapper resource="mapper/GuestbookMapper.xml" />
+		<mapper resource="mapper/BoardMapper.xml" />
+		<mapper resource="mapper/ReplyMapper.xml" />
+		
+		
+<!-- 		710 선생님 -->
+<!-- 		<mapper resource="mapper/BoardMapper.xml" /> -->
+
+	</mappers>
+</configuration>

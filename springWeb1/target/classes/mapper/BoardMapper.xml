@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.web.dao.BoardMapper">
+
+	<select id="BoardList" parameterType="BoardVO" resultType="BoardVO">
+		select * from board order by boardnum DESC
+	</select>
+<!-- 0711선생님 -->
+	<select id="boardRead" parameterType="int" resultType="BoardVO">
+	select * from board where boardnum=#{boardnum}
+	</select>
+
+<update id="countHit" parameterType="int">
+	update board set hit=hit+1 where boardnum=#{boardnum}
+</update>
+
+	<delete id="boardDelete" parameterType="BoardVO">
+		delete board where boardnum=#{boardnum}
+		and userid=#{userid}
+	</delete>
+<!-- sadsad -->
+<!-- 	<insert id="write" parameterType="GuestbookVO"> -->
+<!-- 		insert into guestbook values(guestbook_seq.nextval,#{name},#{pwd},#{content},sysdate -->
+<!-- 		<choose> -->
+<!-- 			<when test="originalFileName !=null and savedFileName!=null"> -->
+<!-- 				,#{originalFilename},#{savedFilename}  -->
+<!-- 			</when> -->
+<!-- 			<otherwise> -->
+<!-- 			,null,null -->
+<!-- 			</otherwise> -->
+<!-- 		</choose> -->
+<!-- 		) -->
+<!-- 	</insert> -->
+<!-- asdadsa -->
+	<insert id="boardWrite" parameterType="BoardVO">
+		INSERT INTO board(boardnum,userid,title,content,originalfilename,savedfilename) values(board_seq.nextval,#{userid},#{title},#{content}
+		<choose>
+			<when test="originalFileName !=null and savedFileName!=null">
+				,#{originalFileName}, #{savedFileName}
+			</when>
+			<otherwise>
+				,null,null
+			</otherwise>
+		</choose>		
+		)
+	</insert>
+	
+	<update id="boardUpdate" parameterType="BoardVO">
+		update board set title=#{title}, content=#{content} where boardnum=#{boardnum} 
+	</update>
+		
+	<select id="boardSelect" parameterType="map" resultType="BoardVO">
+		select * from board 
+		where ${searchItem} LIKE '%'||#{searchKeyword}||'%'
+		order by boardnum DESC
+	</select>
+	
+	<select id="getTotal" parameterType="map" resultType="int">
+		select
+			count(*)
+		from
+			board
+		where
+			${searchItem} like '%'||#{searchKeyword}||'%'
+	</select>
+	
+	
+	<update id="boardUpdate2" parameterType="BoardVO">
+		update board set title=#{title}, content=#{content}
+		<choose>
+			<when test="originalFileName !=null and savedFileName!=null">
+				,originalFileName=#{originalFileName}, savedFileName=#{savedFileName}
+			</when>
+			<otherwise>
+				,originalFileName=null,savedFileName=null
+			</otherwise>
+		</choose>
+		  where boardnum=#{boardnum} and userid = #{userid}
+	</update>
+	
+	
+<!-- 	<delete id="boardDeleteFile" parameterType="BoardVO"> -->
+<!-- 		delete board where boardnum=#{boardnum} -->
+<!-- 		and userid=#{userid} -->
+<!-- 	</delete> -->
+	
+<!-- 	<select id="guestbookList" parameterType="map"  resultType="GuestbookVO"> -->
+<!-- 		select * from guestbook 
+			where ${searchItem} LIKE '%'||#{searchKeyword}||'%' -->
+<!-- 		 order by seq desc -->
+<!-- 	</select> -->
+	
+</mapper>
+	<!-- 	선생님 -->
+<!-- 	<select id="BoardList" resultType="BoardVO"> -->
+<!-- 		select * from board order by boardnum DESC -->
+<!-- 	</select> -->
+
+
